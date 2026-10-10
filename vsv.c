@@ -94,6 +94,24 @@ int vsv_init(size_t elem, VSV* self)
 	self->allocd = 0;
 	return 0;
 }
+int vsv_free(VSV* self)
+{
+	if (__vsv_check(0, self) != 0)
+	{
+		return 1;
+	}
+
+	self->count = 0;
+	self->elem = 0;
+	if (self->ptr != NULL)
+	{
+		free(self->ptr);
+	}
+	self->ptr = NULL;
+	self->allocd = 0;
+	return 0;
+}
+
 
 /* push/pop/insert/erase - modifiers */
 int vsv_assign(size_t n, void* x, VSV* self)

@@ -26,8 +26,15 @@ typedef struct _vsv {
  * @brief Initialise a vector.
  * @param[in]  elem Size of the elements in the vector.
  * @param[out] self Pointer to VSV struct.
+ * @see vsv_free
  */
 int vsv_init(size_t elem, VSV* self);
+/**
+ * @brief Free/destroy a vector.
+ * @param[out] self Pointer to VSV struct.
+ * @see vsv_init
+ */
+int vsv_free(VSV* self);
 
 /**
  * @brief Clear the entire vector, and replace it with
