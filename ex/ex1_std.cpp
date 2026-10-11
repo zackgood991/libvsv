@@ -13,6 +13,9 @@ int main(int argc, char** argv)
 	for(i = 0; i < 10; i++)
 	{
 		vec.push_back(topush);
+		if (i == 0)
+			printf("size: %lu, cap: %lu\n", vec.size(), vec.capacity());
+
 		topush *= 2;
 	}
 	vec.insert(vec.begin() + 10, 3, topush);

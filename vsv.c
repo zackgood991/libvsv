@@ -54,13 +54,19 @@ int __vsv_check(size_t count, VSV* self)
 		{
 			/* NOTE: Don't rely on ptr == NULL then malloc */
 			void* newptr = NULL;
+			size_t toalloc = count;
+			if (count < self->allocd * 2)
+			{
+				toalloc = self->allocd * 2;
+			}
+
 			if (self->ptr == NULL)
 			{
-				newptr = malloc(self->elem * count);
+				newptr = malloc(self->elem * toalloc);
 			}
 			else
 			{
-				newptr = realloc(self->ptr, self->elem * count);
+				newptr = realloc(self->ptr, self->elem * toalloc);
 			}
 
 			if (newptr == NULL)
@@ -76,7 +82,7 @@ int __vsv_check(size_t count, VSV* self)
 			}
 
 			self->ptr = newptr;
-			self->allocd = count;
+			self->allocd = toalloc;
 		}
 		/*else if (self->ptr == NULL)
 		{

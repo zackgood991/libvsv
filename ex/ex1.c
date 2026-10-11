@@ -15,6 +15,8 @@ int main(int argc, char** argv)
 	for(i = 0; i < 10; i++)
 	{
 		vsv_push_back(&topush, &vec);
+		if(i == 0)
+			printf("size: %lu, cap: %lu\n", vsv_size(&vec), vsv_capacity(&vec));
 		topush *= 2;
 	}
 	vsv_insert_n(10, 3, &topush, &vec);
